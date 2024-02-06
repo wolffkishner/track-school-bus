@@ -1,0 +1,5 @@
+Step 1: Install python v3.10+ and mysql server v8
+Step 2: Create database driver_tracker
+Step 3: Create tables with help of the file in the SQL folder
+Step 4: Install dependencies with command -> pip install -r requirements.txt
+Step 5: Start the server with command -> unicorn main:app
