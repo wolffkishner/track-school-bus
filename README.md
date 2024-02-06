@@ -2,7 +2,7 @@
 
 This documentation provides comprehensive information about the Driver Tracker API, designed for parents to track the location of their students' bus routes. The API supports three user types: parents, drivers, and admins. It utilizes Json Web Tokens (JWT) for authentication and implements role-based authorization.
 
-**Note:** Before running the API, ensure you run the `create_table.sql` script located in the SQL folder. This script sets up the necessary tables in the MySQL database for the API to function properly.
+**Note:** Before running the API, ensure you run the `create_table.sql` script located in the `db` folder. This script sets up the necessary tables in the MySQL database for the API to function properly.
 
 The list of technologies used in the Driver Tracker API are:
 
@@ -60,7 +60,7 @@ uvicorn your_file_name:app --reload
 
 Replace `your_file_name` with the name of the Python file containing the API code. In this case, it is **`main.py`**.
 
-**Note:** Before running the API, run the `create_table.sql` script from the SQL folder to set up the required database tables.
+**Note:** Before running the API, run the `create_table.sql` script from the `db` folder to set up the required database tables.
 
 ## Authentication
 

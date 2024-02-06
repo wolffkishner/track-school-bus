@@ -3,18 +3,13 @@ from fastapi import (
     HTTPException,
     FastAPI,
     Depends,
-    Header,
 )
 from typing import Annotated
-from passlib.hash import argon2 as bcrypt
+from passlib.hash import argon2
 from mysql import connector
 from utils.jwt import create_jwt
 from utils.rbac import verify_admin, verify_driver, verify_student
 from db.connect import get_db
-from datetime import datetime, timedelta
-
-# Ideally this should be stored in an environment variable
-SECRET_KEY = "secret"
 
 # Documentation Code
 description = """
@@ -56,7 +51,7 @@ async def student_login(username: str, password: str):
         result = cursor.fetchone()
         if result is None:
             raise HTTPException(status_code=404, detail="User not found")
-        if not bcrypt.verify(password, result[1]):
+        if not argon2.verify(password, result[1]):
             raise HTTPException(status_code=401, detail="Invalid password")
         token = create_jwt({"id": result[0], "role": "student"})
         return {"message": token}
@@ -101,7 +96,7 @@ async def driver_login(username: str, password: str):
         result = cursor.fetchone()
         if result is None:
             raise HTTPException(status_code=404, detail="User not found")
-        if not bcrypt.verify(password, result[2]):
+        if not argon2.verify(password, result[2]):
             raise HTTPException(status_code=401, detail="Invalid password")
         token = create_jwt({"id": result[0], "username": username, "role": "driver"})
         return {"message": token}
@@ -189,7 +184,7 @@ async def admin_login(username: str, password: str):
         print(result)
         if result is None:
             raise HTTPException(status_code=404, detail="User not found")
-        if not bcrypt.verify(password, result[1]):
+        if not argon2.verify(password, result[1]):
             raise HTTPException(status_code=401, detail="Invalid password")
         token = create_jwt({"id": result[0], "username": username, "role": "admin"})
         return {"message": token}
@@ -507,7 +502,7 @@ async def add_student(name: str, username: str, bus_route: str):
         )
 
     password = generate_password()
-    hashed_password = bcrypt.hash(password)
+    hashed_password = argon2.hash(password)
     try:
         cursor = db.cursor()
         cursor.execute(
@@ -621,7 +616,7 @@ async def add_driver(username: str, name: str, bus_route: str):
         )
 
     password = generate_password()
-    hashed_password = bcrypt.hash(password)
+    hashed_password = argon2.hash(password)
     try:
         cursor = db.cursor()
         cursor.execute(
