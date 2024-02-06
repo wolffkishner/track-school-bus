@@ -18,7 +18,7 @@ The list of technologies used in the Driver Tracker API are:
 
 - **Asynchronous Capabilities (async/await):** The API leverages asynchronous features provided by FastAPI, enabling concurrent processing of requests. This enhances overall responsiveness and performance, especially during high-traffic scenarios.
 
-- **UVicorn:** UVicorn is employed as the ASGI server to run the FastAPI application, providing a reliable and efficient runtime environment.
+- **Uvicorn:** UVicorn is employed as the ASGI server to run the FastAPI application, providing a reliable and efficient runtime environment.
 
 These technologies collectively contribute to the reliability, security, and efficiency of the Driver Tracker API, ensuring a seamless experience for users and developers alike.
 
