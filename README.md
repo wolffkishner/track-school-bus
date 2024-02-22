@@ -1,3 +1,5 @@
+> Note: Due to many vulnerabilities and this being built to showcase on a very small platform. I am archiving this repo although you can always reference the code to understand the very basics.
+
 # Driver Tracker API Documentation
 
 This documentation provides comprehensive information about the Driver Tracker API, designed for parents to track the location of their students' bus routes. The API supports three user types: parents, drivers, and admins. It utilizes Json Web Tokens (JWT) for authentication and implements role-based authorization.
